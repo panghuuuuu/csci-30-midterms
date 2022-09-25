@@ -6,7 +6,7 @@ class RingBuffer:
         Create an empty ring buffer, with given max capacity
         '''
         self.capacity = capacity
-        self.buffer = [None] * capacity
+        self.buffer = []
 
     def size(self) -> int:
         '''
@@ -36,13 +36,13 @@ class RingBuffer:
         '''
         Return and remove item from the front
         '''
-        # TO-DO: implement this
+        return self.buffer.remove(self.buffer[0])
 
     def peek(self) -> float:
         '''
         Return (but do not delete) item from the front
         '''
-        # TO-DO: implement this
+        return self.buffer[0]
 
 
 class RingBufferFull(Exception):
