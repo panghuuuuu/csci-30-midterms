@@ -6,7 +6,7 @@ class GuitarString:
         Create a guitar string of the given frequency, using a sampling rate of 24000 Hz
         '''
         # TO-DO: implement this
-
+        print('Hello World')
     def make_from_array(self, init: list[int]):
         '''
         Create a guitar string whose size and initial values are given by the array `init`

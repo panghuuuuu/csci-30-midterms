@@ -6,7 +6,7 @@ class RingBuffer:
         Create an empty ring buffer, with given max capacity
         '''
         # TO-DO: implement this
-
+        print('Hello World')
     def size(self) -> int:
         '''
         Return number of items currently in the buffer
