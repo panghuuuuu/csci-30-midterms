@@ -5,31 +5,32 @@ class RingBuffer:
         '''
         Create an empty ring buffer, with given max capacity
         '''
-        # TO-DO: implement this
-        
+        self.capacity = capacity
+        self.buffer = [None] * capacity
+
     def size(self) -> int:
         '''
         Return number of items currently in the buffer
         '''
-        # TO-DO: implement this
+        return len(self.buffer)
 
     def is_empty(self) -> bool:
         '''
         Is the buffer empty (size equals zero)?
         '''
-        # TO-DO: implement this
+        return self.size == 0 
         
     def is_full(self) -> bool:
         '''
         Is the buffer full (size equals capacity)?
         '''
-        # TO-DO: implement this
+        return self.size == self.capacity
 
     def enqueue(self, x: float):
         '''
         Add item `x` to the end
         '''
-        # TO-DO: implement this
+        self.buffer.append(x)
 
     def dequeue(self) -> float:
         '''
