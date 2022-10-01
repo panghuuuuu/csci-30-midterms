@@ -3,9 +3,9 @@ class RingBuffer:
         '''
         Create an empty ring buffer, with given max capacity
         '''
-        self.capacity = capacity
+        self.MAX_CAP = capacity
         self.buffer = list()
-        self.front = self.rear = 0
+        self._front = self._rear = 0
 
     def size(self) -> int:
         '''
@@ -17,50 +17,46 @@ class RingBuffer:
         '''
         Is the buffer empty (size equals zero)?
         '''
-        return self.size == 0 
-        
+        return self.size() == 0
+
     def is_full(self) -> bool:
         '''
         Is the buffer full (size equals capacity)?
         '''
-        return self.size == self.capacity
+        return self.size() >= self.MAX_CAP
 
     def enqueue(self, x: float):
         '''
         Add item `x` to the end
         '''
-        if self.is_full == True:
-            RingBufferFull
-        elif self.rear == self.capacity:
-            self.rear = 0
+        if self.is_full() == True:
+            raise RingBufferFull
         else:
-            self.buffer.append(x)
-            self.rear += 1
+            self.buffer.insert(self._rear, x)
+            self._rear += 1 % self.MAX_CAP
 
     def dequeue(self) -> float:
         '''
         Return and remove item from the front
         '''
-        if self.is_empty == True:
-            RingBufferEmpty
-        
-        elif self.front == self.capacity:
-            self.front = 0
+        if self.is_empty() == True:
+            raise RingBufferEmpty
         else:
-            x = self.buffer[self.front]
-            self.front += 1
-            return x 
+            x = self.peek()
+            self.buffer.pop(self._front)
+            return x
+
     def peek(self) -> float:
         '''
         Return (but do not delete) item from the front
         '''
-        return self.buffer[self.front]
-    
-    def printBuffer(self):
-        print(self.buffer)
-        
+        if self.is_empty() == True:
+            raise RingBufferEmpty
+        else:
+            return self.buffer[self._front]
 class RingBufferFull(Exception):
     pass
+
 
 class RingBufferEmpty(Exception):
     pass
