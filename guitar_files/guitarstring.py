@@ -8,9 +8,10 @@ class GuitarString:
         '''
         N = 24000/frequency
         self.newBuffer = RingBuffer(int(N))
+        self.numTicks = 0
         for i in range(N):
             self.newBuffer.enqueue(0)
-                 
+          
     def make_from_array(self, init: list[int]):
         '''
         Create a guitar string whose size and initial values are given by the array `init`
@@ -28,16 +29,15 @@ class GuitarString:
         '''
         Advance the simulation one time step by applying the Karplus--Strong update
         '''
-        # TO-DO: implement this
+        self.numTicks += 1
 
     def sample(self) -> float:
         '''
         Return the current sample
         '''
-        # TO-DO: implement this
-
+        return self.newBuffer.peek()
     def time(self) -> int:
         '''
         Return the number of ticks so far
         '''
-        # TO-DO: implement this
+        return self.numTicks
