@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from random import random
 from ringbuffer import RingBuffer
 class GuitarString:
     def __init__(self, frequency: float):
@@ -6,9 +7,9 @@ class GuitarString:
         Create a guitar string of the given frequency, using a sampling rate of 24000 Hz
         '''
         N = 24000/frequency
-        newBuffer = RingBuffer(int(N))
+        self.newBuffer = RingBuffer(int(N))
         for i in range(N):
-            newBuffer.enqueue(0)
+            self.newBuffer.enqueue(0)
                  
     def make_from_array(self, init: list[int]):
         '''
@@ -20,8 +21,9 @@ class GuitarString:
         '''
         Set the buffer to white noise
         '''
-        # TO-DO: implement this
-
+        for i in range(self.newBuffer.size()):
+            self.newBuffer[i] = random.uniform(-1/2,1/2)
+            
     def tick(self):
         '''
         Advance the simulation one time step by applying the Karplus--Strong update
