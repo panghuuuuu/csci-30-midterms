@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from random import random
+import random
 from ringbuffer import RingBuffer
 import math
 class GuitarString:
@@ -31,13 +31,19 @@ class GuitarString:
         '''
         Set the buffer to white noise
         '''
-        for i in range(self.buffer.size()):
-            self.buffer._buffer = random.uniform(-1/2,1/2)
+        for i in range(self.capacity):
+            self.buffer.buffer[i] = random.uniform(-1/2,1/2)
             
     def tick(self):
         '''
         Advance the simulation one time step by applying the Karplus--Strong update
         '''
+        
+        x = self.buffer.peek()
+        self.buffer.dequeue()
+        y = self.buffer.peek()
+        self.buffer.enqueue(0.996*(x+y)/2)
+        self.numTicks+=1
 
     def sample(self) -> float:
         '''
