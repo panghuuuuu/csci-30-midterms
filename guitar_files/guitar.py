@@ -31,7 +31,7 @@ if __name__ == '__main__':
                     pass
 
         for i in range(16):
-            sample += string[i].sample()
+            sample += string[0].sample()
         play_sample(sample)
 
         for i in range(16):
