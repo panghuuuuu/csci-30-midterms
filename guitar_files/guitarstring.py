@@ -37,8 +37,7 @@ class GuitarString:
     def tick(self):
         '''
         Advance the simulation one time step by applying the Karplus--Strong update
-        '''
-        
+        ''' 
         x = self.buffer.peek()
         self.buffer.dequeue()
         y = self.buffer.peek()
