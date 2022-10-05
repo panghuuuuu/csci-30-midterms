@@ -58,10 +58,8 @@ class RingBuffer:
         '''
         if self.is_empty() == True:
             raise RingBufferEmpty
-        elif self._front == self.MAX_CAP:
-            return self.buffer[0]
         else:
-            return self.buffer[self._front]
+            return self.buffer[self._front % self.MAX_CAP]
 class RingBufferFull(Exception):
     pass
 
