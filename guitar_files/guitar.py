@@ -16,6 +16,7 @@ if __name__ == '__main__':
         x = 440*(1.059463**(i-12))
         string.append(GuitarString(x))
     sample = 0
+    index = 0
 
     while True:
         for event in pygame.event.get():
@@ -24,12 +25,16 @@ if __name__ == '__main__':
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 key = event.unicode
-                if key in keyboard: 
+                try:
                     x = keyboard.index(key)
                     string[x].pluck()
+                    index = x
+                except ValueError:
+                    index = None                    
 
         x = sum(list(map(lambda x: x.sample(), string)))
         play_sample(x)
         
-        [string[i].tick() for i in range(4)]
+        if index != None:
+            string[index].tick()
         
