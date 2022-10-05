@@ -11,7 +11,6 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode((width, height))
 
     keyboard = ["q","2","w","e","4","r","5","t","y","7","u","8","i","9","o","p"]
-    keyboard = {'q':0, '2':1, 'w':2, 'e':3, '4':4, 'r':5, '5':6, 't':7, 'y':8, '7':9, 'u':10, '8':11, 'i':12, '9':13, 'o':14, 'p':15}
     string = list()
     for i in range(len(keyboard)):
         x = 440*(1.059463**(i-12))
