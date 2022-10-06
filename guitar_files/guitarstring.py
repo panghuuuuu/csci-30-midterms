@@ -39,8 +39,7 @@ class GuitarString:
         Advance the simulation one time step by applying the Karplus--Strong update
         '''
         
-        x = self.buffer.peek()
-        self.buffer.dequeue()
+        x = self.buffer.dequeue()
         y = self.buffer.peek()
         self.buffer.enqueue(0.996*(x+y)/2)
         self.numTicks+=1
