@@ -1,3 +1,6 @@
+import math
+
+
 class RingBuffer:
     def __init__(self, capacity: int):
         '''
@@ -11,7 +14,8 @@ class RingBuffer:
         '''
         Return number of items currently in the buffer
         '''
-        return self._rear - self._front
+        if (self._rear == self._front): return 0
+        else: abs(self._rear - self._front) + 1    
 
     def is_empty(self) -> bool:
         '''
