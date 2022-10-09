@@ -1,6 +1,3 @@
-import math
-
-
 class RingBuffer:
     def __init__(self, capacity: int):
         '''
@@ -10,6 +7,7 @@ class RingBuffer:
         self.buffer = [None] * capacity
         self._front = self._rear = -1
         self._counter = 0
+
     def size(self) -> int:
         '''
         Return number of items currently in the buffer
@@ -32,16 +30,19 @@ class RingBuffer:
         '''
         Add item `x` to the end
         '''
-        if self.is_full() == True: raise RingBufferFull
+        if self.is_full() == True:
+            raise RingBufferFull
         else:
             self.buffer[self._rear] = x
             self._rear = (self._rear + 1) % self.MAX_CAP
             self._counter += 1
+
     def dequeue(self) -> float:
         '''
         Return and remove item from the front
         '''
-        if self.is_empty() == True: raise RingBufferEmpty
+        if self.is_empty() == True:
+            raise RingBufferEmpty
         else:
             x = self.peek()
             self._front = (self._front + 1) % self.MAX_CAP
@@ -52,9 +53,12 @@ class RingBuffer:
         '''
         Return (but do not delete) item from the front
         '''
-        if self.is_empty() == True: raise RingBufferEmpty
+        if self.is_empty() == True:
+            raise RingBufferEmpty
         else:
             return self.buffer[self._front]
+
+
 class RingBufferFull(Exception):
     pass
 

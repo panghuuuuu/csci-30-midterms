@@ -12,7 +12,7 @@ class GuitarString:
         self.numTicks = 0
         for i in range(self.capacity):
             self.buffer.enqueue(0)
-    
+
     @classmethod
     def make_from_array(cls, init: list[int]):
         '''
@@ -32,24 +32,24 @@ class GuitarString:
         Set the buffer to white noise
         '''
         for i in range(self.capacity):
-            self.buffer.buffer[i] = random.uniform(-1/2,1/2)
-            
+            self.buffer.buffer[i] = random.uniform(-1/2, 1/2)
+
     def tick(self):
         '''
         Advance the simulation one time step by applying the Karplus--Strong update
         '''
-        
+
         x = self.buffer.dequeue()
         y = self.buffer.peek()
         self.buffer.enqueue(0.996*(x+y)/2)
-        self.numTicks+=1
+        self.numTicks += 1
 
     def sample(self) -> float:
         '''
         Return the current sample
         '''
         return self.buffer.peek()
-        
+
     def time(self) -> int:
         '''
         Return the number of ticks so far

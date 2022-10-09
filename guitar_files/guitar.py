@@ -10,11 +10,10 @@ if __name__ == '__main__':
     width, height = 640, 480
     screen = pygame.display.set_mode((width, height))
 
-    keyboard = ["q","2","w","e","4","r","5","t","y","7","u","8","i","9","o","p"]
-    string = list()
-    for i in range(len(keyboard)):
-        x = 440*(1.059463**(i-12))
-        string.append(GuitarString(x))
+    keyboard = ["q", "2", "w", "e", "4", "r", "5",
+                "t", "y", "7", "u", "8", "i", "9", "o", "p"]
+    string = [GuitarString(440*(1.059463**(i-12)))
+              for i in range(len(keyboard))]
     sample = 0
     index = 0
 
@@ -30,10 +29,10 @@ if __name__ == '__main__':
                     string[x].pluck()
                     index = x
                 except ValueError:
-                    index = None                    
+                    index = None
 
         x = sum(list(map(lambda x: x.sample(), string)))
         play_sample(x)
-        
+
         if index != None:
             string[index].tick()
